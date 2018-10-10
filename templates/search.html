@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEARCH</title>
+        <!-- ======================= links to bootstrap files =================== -->
+    <link rel="stylesheet" href="../static/bootstrap4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/bootstrap4.1.3/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/bootstrap4.1.3/css/animate.css">
+    <!-- ====================== links to javascript files =================== -->
+    <script src ="../static/bootstrap4.1.3/js/jquery.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/bootstrap.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/parallax.min.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/wow.min.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/jquery.easing.min.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/fliplightbox.min.js"></script>
+    <script src ="../static/bootstrap4.1.3/js/functions.js"></script>
+
+    <style>
+        #mainsection{
+            font-family: "Baskerville Old Face";
+    }
+    </style>
+</head>
+<body>
+
+    <h1 class="jumbotron text-center"> Search results</h1>
+    <section class="row" id="mainsection">
+        <div class="col-md-3" >
+            <a href="/blog" class="btn btn-dark">POST BLOG</a>
+        </div>
+        <div class="col-md-6 bg-light">
+            <h4>{{ msg }}</h4>
+            <h4>{{ msg2 }}</h4>
+            {% for row in searchdata %}
+                <p class="text-muted">{{ row[3] }}</p>
+                <h6 class="text-secondary text-right">Posted by: <i>{{ row[1] }}</i> on
+                    <i>{{ row[4] }}</i>
+                </h6>
+                <!-- We move to deleteblog when the link is clicked
+                We pass the message id along-->
+                <a href="/deleteblog/{{ row[0] }}" onclick="return confirm('Are you sure?')">DELETE</a>
+                <hr color="#659df7" width="30%">
+
+                <br><br>
+            {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <form action="/search" method="post" class="form-inline">
+                <input class="form-control" type="text" name="name" placeholder="Enter name to search..." style="padding-right:5%">
+                <input type="submit" class="btn btn-success">
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
